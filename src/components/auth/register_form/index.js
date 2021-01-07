@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { Button, Field, Control, Input, Column, Section, Help, Label } from "rbx";
-import { Redirect } from "react-router-dom";
+import { Button, Field, Control, Input, Column, Section, Help, Label } from 'rbx';
+import { Redirect } from 'react-router-dom';
 import UserService from '../../../services/users';
 
 function RegisterForm() {
