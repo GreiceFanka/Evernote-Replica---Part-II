@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Input, Column, Section, Help, Label } from "rbx";
+import UserService from '../../../services/users';
 import { Redirect } from "react-router-dom";
 
 function LoginForm() {
@@ -8,16 +9,27 @@ function LoginForm() {
     const [RedirectToRegister, setRedirectToRegister] = useState(false);
     const [RedirectToNotes, setRedirectToNotes] = useState(false);
     const [error, setError] = useState(false);
-  
-    if(RedirectToRegister == true)
-      return <Redirect to={{pathname: "/register"}}/>
-    else if(RedirectToNotes == true)
-      return <Redirect to={{pathname: "/notes"}}/>
+
+    if (RedirectToRegister == true)
+        return <Redirect to={{ pathname: "/register" }} />
+    else if (RedirectToNotes == true)
+        return <Redirect to={{ pathname: "/notes" }} />
+
+    const handleSubmit = async (evt) => {
+        evt.preventDefault();
+
+        try {
+            await UserService.login({ email: email, password: password });
+            setRedirectToNotes(true);
+        } catch (error) {
+            setError(true)
+        }
+    }
 
     return (
         <Fragment>
             <Column.Group centered>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <Column size={12}>
                         <Field>
                             <Label size="small">Email:</Label>
@@ -55,7 +67,7 @@ function LoginForm() {
                                 </Column.Group>
                             </Control>
                         </Field>
-                        { error && <Help color="danger">Email or Password invalid</Help> }
+                        {error && <Help color="danger">Email or Password invalid</Help>}
                     </Column>
                 </form>
             </Column.Group>
