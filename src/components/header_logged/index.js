@@ -41,12 +41,23 @@ function HeaderLogged(props) {
             </Navbar.Brand>
 
             <Navbar.Menu>
+                <Navbar.Segment as="div" className="navbar-item navbar-start" align="start">
+                    <Navbar.Item as="div">
+                        <Button
+                            className="open-button"
+                            color="white"
+                            outlined
+                            onClick={() => props.setIsOpen(true)}>
+                            <FontAwesomeIcon icon={faList} />
+                        </Button>
+                    </Navbar.Item>
+                </Navbar.Segment>
                 <Navbar.Segment as="div" className="navbar-item navbar-end" align="right">
                     <Navbar.Item as="div">
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button" color="white" outlined>
-                                    <span>Leonardo ▼</span>
+                                    <span>Greice ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>
